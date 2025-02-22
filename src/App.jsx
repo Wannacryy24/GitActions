@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import './App.css'
+import One from './One'
+import Two from './Two'
 
 function App() {
-  const [show, setShow] = useState(true)
-  const handleClick = () => {
-    setShow(!show)
-  }
+  const [message, setMessage] = useState('')
+
   return (
     <>
-      <p>{show ? 'Mayank' : ''}</p>
-      <button onClick={handleClick}>{show ? 'show' : 'hide'}</button>
-      <p>asd</p>
+      {message === 'one' && <One />}
+      {message === 'two' && <Two />}
+      <button onClick={() => setMessage('one')}>One</button>
+      <button onClick={() => setMessage('two')}>Two</button>
     </>
   )
 }
