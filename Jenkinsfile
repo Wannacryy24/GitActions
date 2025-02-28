@@ -1,16 +1,17 @@
 pipeline {
     agent any
+    tools {
+        nodejs "NodeJS"  // Use NodeJS plugin from Jenkins
+    }
     stages {
-        stage('Clone Repository') {
+        stage('Checkout Code') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'github-credentials-28Feb', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                    sh 'git clone https://${GIT_USER}:${GIT_PASS}@github.com/Wannacryy24/GitActions.git'
-                }
+                checkout scm  // Let Jenkins handle the repository checkout
             }
         }
         stage('Build') {
             steps {
-                sh 'npm install'  // Run npm install
+                sh 'npm install'  // Install dependencies
             }
         }
         stage('Test') {
