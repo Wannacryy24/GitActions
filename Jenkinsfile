@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        nodejs "NodeJS 18"  // Use NodeJS plugin from Jenkins
+        nodejs "NodeJS 23.9.0"  // Use NodeJS plugin from Jenkins
     }
     stages {
         stage('Checkout Code') {
