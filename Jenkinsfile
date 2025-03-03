@@ -13,7 +13,9 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                 git 'https://github.com/Wannacryy24/GitActions.git'
+                git branch: 'main',
+                    credentialsId: 'github-credentials-28Feb',
+                    url: 'https://github.com/Wannacryy24/GitActions.git'
             }
         }
 
