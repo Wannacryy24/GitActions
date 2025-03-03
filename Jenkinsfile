@@ -1,5 +1,5 @@
 pipeline {
-     agent { docker { image 'node:latest' } }
+    agent any
 
     tools {
         nodejs "NodeJS 18"  // Ensure Node.js is installed in Jenkins
@@ -10,14 +10,10 @@ pipeline {
         SITE_ID = '165858e8-1089-4a95-9416-5c64d89e5293' // Replace with your Netlify Site ID
     }
 
-    options {
-        failFast true // Stop execution if any stage fails
-    }
-
     stages {
         stage('Checkout Code') {
             steps {
-                checkout scm  // Checks out the source code from the repository
+                 git 'https://github.com/Wannacryy24/GitActions.git'
             }
         }
 
@@ -39,9 +35,7 @@ pipeline {
             }
 
             steps {
-                withCredentials([string(credentialsId: 'NETLIFY_AUTH_TOKEN', variable: 'NETLIFY_AUTH_TOKEN')]) {
-                    sh 'npx netlify deploy --prod --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$SITE_ID'
-                }
+                sh 'npx netlify deploy --prod --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$SITE_ID'
             }
         }
     }
